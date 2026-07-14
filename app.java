@@ -59,24 +59,7 @@ public class App {
         Paciente paciente = hospital.buscarPacientePorDni(dni);
 
         if (paciente == null) {
-             System.out.println("El paciente con DNI " + dni + " no se encuentra registrado.");
-
-            String respuesta;
-            do {
-                System.out.print("¿Desea ingresar este nuevo paciente? (S/N): ");
-                respuesta = scanner.nextLine().trim().toUpperCase();
-                if (!respuesta.equals("S") && !respuesta.equals("N")) {
-                    System.out.println("[ERROR]: Por favor, ingrese 'S' para Sí o 'N' para No.");
-                }
-            } while (!respuesta.equals("S") && !respuesta.equals("N"));
-
-            if (respuesta.equals("N")) {
-                System.out.println("Operación cancelada. Regresando al menú principal...");
-                return;
-            }
-
-            System.out.println("\n--- Procediendo a registrar nuevo ingreso ---");
-
+            System.out.println("El paciente no se encuentra. Procediendo a registrar nuevo ingreso...");
             System.out.print("Apellido: ");
             String apellido = scanner.nextLine();
             System.out.print("Nombre: ");
