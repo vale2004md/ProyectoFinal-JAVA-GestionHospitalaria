@@ -1,0 +1,5 @@
+Historial de perez, valen (DNI 123456)
+----------------------------------------
+[13/07/2026 20:49:37] Ingreso registrado. Obra social: no tiene. Observación: no
+[13/07/2026 20:50:50] Alta registrada. Fecha de egreso: 13/12/2025
+[13/07/2026 20:51:43] Nuevo ingreso. Fecha de ingreso: 13/12/2025. Observación: no
