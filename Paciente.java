@@ -1,12 +1,12 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Paciente {
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/uuuu");
-    private static final DateTimeFormatter FORMATO_HISTORIAL = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    //private static final DateTimeFormatter FORMATO_HISTORIAL = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private String apellido;
     private String nombre;
@@ -32,7 +32,7 @@ public class Paciente {
         this.observacion = observacion;
 
         this.historial = new ArrayList<>();
-        registrarEvento("Ingreso registrado. Obra social: " + obraSocial + ". Observación: " + observacion);
+        registrarEvento("Ingreso registrado. " + " Observación: " + observacion);
     }
 
     // Getters y Setters
@@ -40,8 +40,9 @@ public class Paciente {
     public String getNombre() { return nombre; }
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
     public String getDni() { return dni; }
-
     public String getObraSocial() { return obraSocial; }
+
+    // public String getObraSocial() { return obraSocial; }
     public void setObraSocial(String obraSocial) {
         registrarEvento("Obra social modificada: '" + this.obraSocial + "' -> '" + obraSocial + "'");
         this.obraSocial = obraSocial;
@@ -76,8 +77,8 @@ public class Paciente {
 
     // Agrega una entrada al historial con fecha y hora reales (java.time)
     private void registrarEvento(String descripcion) {
-        String marcaTiempo = LocalDateTime.now().format(FORMATO_HISTORIAL);
-        historial.add("[" + marcaTiempo + "] " + descripcion);
+       // String marcaTiempo = LocalDateTime.now().format(FORMATO_HISTORIAL);
+        historial.add( descripcion );
     }
 
     // Devuelve "Pendiente" si el paciente sigue internado (fechaEgreso == null)
@@ -100,7 +101,7 @@ public class Paciente {
 
     // Muestra el historial completo de eventos del paciente
     public void mostrarHistorial() {
-        System.out.println("\n=== HISTORIAL DE " + apellido + ", " + nombre + " (DNI " + dni + ") ===");
+        System.out.println("\n=== HISTORIAL DE " + apellido + ", " + nombre + " (DNI " + dni + ")" + " | Obra Social: " + obraSocial +"   ===");
         if (historial.isEmpty()) {
             System.out.println("Sin eventos registrados.");
         } else {

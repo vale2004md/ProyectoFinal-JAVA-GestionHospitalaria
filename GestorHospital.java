@@ -83,7 +83,7 @@ public class GestorHospital {
         String nombreArchivo = "resultados_busqueda_" + marca + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-            writer.write("Resultados de búsqueda - " + LocalDateTime.now());
+            writer.write("Resultados de búsqueda");
             writer.newLine();
             writer.write("----------------------------------------");
             writer.newLine();
@@ -109,7 +109,7 @@ public class GestorHospital {
         String nombreArchivo = "historial_" + p.getDni() + ".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
-            writer.write("Historial de " + p.getApellido() + ", " + p.getNombre() + " (DNI " + p.getDni() + ")");
+            writer.write("Historial de " + p.getApellido() + ", " + p.getNombre() + " (DNI " + p.getDni() + ") | Obra Social: " + p.getObraSocial());
             writer.newLine();
             writer.write("----------------------------------------");
             writer.newLine();

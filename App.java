@@ -90,7 +90,24 @@ public class App {
         Paciente paciente = hospital.buscarPacientePorDni(dni);
 
         if (paciente == null) {
-            System.out.println("El paciente no se encuentra. Procediendo a registrar nuevo ingreso...");
+              System.out.println("El paciente con DNI " + dni + " no se encuentra registrado.");
+
+            String respuesta;
+            do {
+                System.out.print("¿Desea ingresar este nuevo paciente? (S/N): ");
+                respuesta = scanner.nextLine().trim().toUpperCase();
+                if (!respuesta.equals("S") && !respuesta.equals("N")) {
+                    System.out.println("[ERROR]: Por favor, ingrese 'S' para Sí o 'N' para No.");
+                }
+            } while (!respuesta.equals("S") && !respuesta.equals("N"));
+
+            if (respuesta.equals("N")) {
+                System.out.println("Operación cancelada. Regresando al menú principal...");
+                return;
+            }
+
+            System.out.println("\n--- Procediendo a registrar nuevo ingreso ---");
+
             System.out.print("Apellido: ");
             String apellido = scanner.nextLine();
             System.out.print("Nombre: ");
@@ -200,14 +217,20 @@ public class App {
         } else {
             System.out.println("\n##### Resultados encontrados #####");
             for (Paciente p : resultados) {
-                System.out.println("DNI: " + p.getDni() + " | " + p.getApellido() + ", " + p.getNombre());
+                System.out.println("DNI: " + p.getDni() + " | " + p.getApellido() + ", " + p.getNombre() );
             }
         }
-
+        System.out.print("\nSeleccione un dni: ");
+        String dni = scanner.nextLine();
+        Paciente p = hospital.buscarPacientePorDni(dni);
         System.out.print("\n¿Desea guardar estos resultados en un archivo? (S/N): ");
-        String respuesta = scanner.nextLine();
-        if (respuesta.equalsIgnoreCase("S")) {
-            hospital.guardarResultadosEnArchivo(resultados);
+        if (p != null) {
+            ArrayList<Paciente> resultados2 =  hospital.buscarPacientePorDni(p.getDni()) != null ? new ArrayList<Paciente>() : new ArrayList<Paciente>();
+            String respuesta = scanner.nextLine();
+            if (respuesta.equalsIgnoreCase("S")) {
+                resultados2.add(p);
+                hospital.guardarResultadosEnArchivo(resultados2);
+            }
         }
     }
 }
